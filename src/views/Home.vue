@@ -1,6 +1,9 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="home-container">
+    <h1> Adopt a new best friend ({{animalsCount}}) </h1>
+    <h2> Cats: {{getAllCats.length}} </h2>
+    <h2> Dogs: {{getAllDogs.length}} </h2>
+
     <button class="btn btn-primary" @click="togglePetForm" >Add new button</button>
 
     <b-form @submit.prevent="onSubmit" v-if="showPetForm">
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 // @ is an alias to /src
 export default {
   name: 'Home',
@@ -65,6 +68,9 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['animalsCount', 'getAllCats', 'getAllDogs'])
+  },
   methods: {
     ...mapActions(['addPet']),
     togglePetForm () {
@@ -76,7 +82,8 @@ export default {
         species,
         pet: {
           name,
-          age
+          age,
+          species
         }
       }
       this.formData = {
