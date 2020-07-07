@@ -1,4 +1,4 @@
-# pets
+# Pets adoption (practice)
 
 ## Project setup
 ```
